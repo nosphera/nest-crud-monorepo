@@ -1,0 +1,55 @@
+version: '3'
+services:
+  app:
+    # Mount our host Directory to the docker container
+    # Mount (.) current directory to the docker container thomas/src/app
+    # reflect file changes from host to container
+    volumes:
+      - .:/usr/src/api
+      - ./usr/src/api/node_modules
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - .env
+    ports:
+      - 3000:3000
+      - 3001:3001
+      - 3002:3002
+      - 3003:3003
+    depends_on:
+      - postgres 
+    networks:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pgdata:/var/lib/postgres/data
+      - ./pgdata/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+    env_file:
+      - .env
+    networks:
+      - postgres
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - '5050:80'
+    volumes:
+      - ./pgdata:/var/lib/pgadmin
+    env_file:
+      - .env      
+    networks:
+      - postgres
+
+networks:
+  postgres:
+    driver: bridge

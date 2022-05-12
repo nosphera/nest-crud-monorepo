@@ -1,4 +1,4 @@
-import { User } from 'src/domain/entities/user.entity';
+import { User } from 'lib/src/domain/entities/user.entity';
 import { Connection } from 'typeorm';
 
 export const UsersRepositoryToken = 'USERS_REPOSITORY';

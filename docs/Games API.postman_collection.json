@@ -1,0 +1,268 @@
+{
+	"info": {
+		"_postman_id": "17058c92-8e6e-4f46-9dfc-6c2dd477fa93",
+		"name": "Games API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "get Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{apiUrl}}/games"
+					},
+					"response": []
+				},
+				{
+					"name": "get Game by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/games/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "e2e83a1e-1ede-4948-8a3f-d8af0d1256ca"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Game by Id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{apiUrl}}/games/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "675bb152-2ac3-4e11-b8ff-0c729a6ada1b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put Game by Id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diablo\",\r\n    \"category\": \"RPG\",\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiUrl}}/games/:id",
+							"host": [
+								"{{apiUrl}}"
+							],
+							"path": [
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "e2e83a1e-1ede-4948-8a3f-d8af0d1256ca"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post Game",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Diablo\",\r\n    \"category\": \"RPG\",\r\n    \"status\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{apiUrl}}/games"
+					},
+					"response": [
+						{
+							"name": "post Game",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Diablo\",\r\n    \"category\": \"RPG\",\r\n    \"status\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{apiUrl}}/games"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "48"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"30-bd0t3J18IYnnhx80Pjyxw3Wfs/A\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 May 2022 20:02:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Diablo\",\n    \"category\": \"RPG\",\n    \"status\": true\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": {
+					"token": "{{token}}"
+				}
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"token\", jsonData.access_token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"username\": \"john\", \"password\": \"changeme\"}"
+						},
+						"url": "http://localhost:3000/auth/login"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpvaG4iLCJzdWIiOjEsImlhdCI6MTY1MTk2NTA4OX0.iyoEo_o-ckU-3Cvs7LF-p2zRGs8nv83c5NJhOCVamnU",
+			"type": "string"
+		}
+	]
+}

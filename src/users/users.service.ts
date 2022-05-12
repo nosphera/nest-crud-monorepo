@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { UpdateUserDto } from 'src/domain/dto/update-user.dto';
-import { User } from 'src/domain/entities/user.entity';
+import { UpdateUserDto } from 'lib/src/domain/dto/update-user.dto';
+import { User } from 'lib/src/domain/entities/user.entity';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from '../domain/dto/create-user.dto';
+import { CreateUserDto } from '../../lib/src/domain/dto/create-user.dto';
 import { UsersRepositoryToken } from './users.provider';
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Connection } from 'typeorm';
-import { Game } from '../domain/entities/game.entity';
+import { Game } from '../../lib/src/domain/entities/game.entity';
 
 export const GameRepositoryToken = 'GAMES_REPOSITORY';
 

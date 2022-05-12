@@ -6,9 +6,9 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { CreateGameDto } from '../domain/dto/create-game.dto';
-import { UpdateGameDto } from '../domain/dto/update-game.dto';
-import { Game } from '../domain/entities/game.entity';
+import { CreateGameDto } from '../../lib/src/domain/dto/create-game.dto';
+import { UpdateGameDto } from '../../lib/src/domain/dto/update-game.dto';
+import { Game } from '../../lib/src/domain/entities/game.entity';
 import { GameRepositoryToken } from './game.provider';
 
 @Injectable()
